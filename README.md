@@ -10,6 +10,12 @@
 </p>
 
 <p align="center">
+    <a href="https://console.runpod.io/hub/ds1183406-create/Ace-step">
+        <img src="https://api.runpod.io/badge/ds1183406-create/Ace-step" alt="RunPod">
+    </a>
+</p>
+
+<p align="center">
     <img src="./assets/orgnization_logos.png" width="100%" alt="StepFun Logo">
 </p>
 

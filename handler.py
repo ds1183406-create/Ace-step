@@ -1,27 +1,27 @@
 import runpod
 import os
-import torch
-from ace_step import ACEStepPipeline
+import base64
+from ace_step.inference import ACEStepInference
 
-# Initialize pipeline globally
-pipeline = None
+# Initialize inference globally
+inference = None
 
 def load_model():
-    global pipeline
-    if pipeline is None:
+    global inference
+    if inference is None:
         checkpoint_path = os.environ.get('CHECKPOINT_PATH', '~/.cache/ace-step/checkpoints')
-        pipeline = ACEStepPipeline.from_pretrained(
-            checkpoint_path,
-            torch_dtype=torch.bfloat16,
-            device_map="auto"
+        inference = ACEStepInference(
+            checkpoint_path=checkpoint_path,
+            device_id=0,
+            bf16=True
         )
-    return pipeline
+    return inference
 
 def handler(job):
     job_input = job['input']
     
     # Load model
-    pipe = load_model()
+    inf = load_model()
     
     # Extract parameters
     tags = job_input.get('tags', '')
@@ -31,14 +31,17 @@ def handler(job):
     guidance_scale = float(os.environ.get('GUIDANCE_SCALE', '3.0'))
     
     # Generate music
-    result = pipe(
+    audio_data = inf.text2music(
         tags=tags,
         lyrics=lyrics,
-        duration=duration,
-        num_inference_steps=inference_steps,
+        audio_duration=duration,
+        inference_steps=inference_steps,
         guidance_scale=guidance_scale
     )
     
-    return {"audio_url": result.audio_url}
+    # Convert to base64
+    audio_b64 = base64.b64encode(audio_data).decode('utf-8')
+    
+    return {"audio_base64": audio_b64}
 
 runpod.serverless.start({"handler": handler})
