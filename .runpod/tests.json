@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "name": "text2music_generation",
+      "input": {
+        "tags": "pop, upbeat, electronic",
+        "lyrics": "[verse] Hello world, this is a test [chorus] Music generation with ACE-Step",
+        "duration": 30
+      },
+      "timeout": 60000
+    }
+  ],
+  "config": {
+    "gpuTypeId": "NVIDIA A100 80GB PCIe",
+    "gpuCount": 1,
+    "env": [
+      {
+        "key": "INFERENCE_STEPS",
+        "value": "27"
+      },
+      {
+        "key": "GUIDANCE_SCALE",
+        "value": "3.0"
+      }
+    ],
+    "allowedCudaVersions": [
+      "12.6",
+      "12.5",
+      "12.4",
+      "12.3",
+      "12.2",
+      "12.1"
+    ]
+  }
+}

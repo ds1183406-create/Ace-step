@@ -1,0 +1,51 @@
+{
+  "title": "ACE-Step Music Generation",
+  "description": "A Step Towards Music Generation Foundation Model - Fast, controllable music generation with diffusion-based architecture",
+  "type": "serverless",
+  "category": "audio",
+  "iconUrl": "https://raw.githubusercontent.com/ace-step/ACE-Step/main/assets/orgnization_logos.png",
+  "config": {
+    "runsOn": "GPU",
+    "containerDiskInGb": 50,
+    "presets": [
+      {
+        "name": "Standard Generation",
+        "defaults": {
+          "INFERENCE_STEPS": "27",
+          "GUIDANCE_SCALE": "3.0"
+        }
+      },
+      {
+        "name": "High Quality",
+        "defaults": {
+          "INFERENCE_STEPS": "60",
+          "GUIDANCE_SCALE": "3.5"
+        }
+      }
+    ],
+    "env": [
+      {
+        "key": "CHECKPOINT_PATH",
+        "value": "/runpod-volume/checkpoints"
+      },
+      {
+        "key": "INFERENCE_STEPS",
+        "input": {
+          "name": "Inference Steps",
+          "type": "string",
+          "description": "Number of inference steps (27 for fast, 60 for quality)",
+          "default": "27"
+        }
+      },
+      {
+        "key": "GUIDANCE_SCALE",
+        "input": {
+          "name": "Guidance Scale",
+          "type": "string",
+          "description": "CFG guidance scale for generation quality",
+          "default": "3.0"
+        }
+      }
+    ]
+  }
+}
