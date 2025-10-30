@@ -12,10 +12,11 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install Python dependencies
-COPY . .
-RUN pip install -e .
+# Install Python dependencies
 RUN pip install runpod
+
+# Copy application files
+COPY . .
 
 # Set environment variables
 ENV PYTHONPATH=/app
