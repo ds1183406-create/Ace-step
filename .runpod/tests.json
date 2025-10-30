@@ -1,31 +1,62 @@
 {
   "tests": [
     {
-      "name": "text2music_generation",
+      "name": "test_a5000",
       "input": {
-        "tags": "test music",
-        "duration": 10
+        "tags": "test",
+        "duration": 5
       },
-      "timeout": 30000
+      "timeout": 20000
+    },
+    {
+      "name": "test_rtx3090",
+      "input": {
+        "tags": "test",
+        "duration": 5
+      },
+      "timeout": 20000
+    },
+    {
+      "name": "test_l4",
+      "input": {
+        "tags": "test",
+        "duration": 5
+      },
+      "timeout": 20000
+    },
+    {
+      "name": "test_rtx4090",
+      "input": {
+        "tags": "test",
+        "duration": 5
+      },
+      "timeout": 20000
     }
   ],
-  "config": {
-    "gpuTypeId": "NVIDIA RTX A5000",
-    "gpuCount": 1,
-    "env": [
-      {
-        "key": "INFERENCE_STEPS",
-        "value": "27"
-      },
-      {
-        "key": "GUIDANCE_SCALE",
-        "value": "3.0"
-      }
-    ],
-    "allowedCudaVersions": [
-      "12.1",
-      "11.8",
-      "11.7"
-    ]
-  }
+  "config": [
+    {
+      "gpuTypeId": "NVIDIA RTX A5000",
+      "gpuCount": 1,
+      "env": [{"key": "TEST_GPU", "value": "A5000"}],
+      "allowedCudaVersions": ["12.1", "11.8"]
+    },
+    {
+      "gpuTypeId": "NVIDIA RTX 3090",
+      "gpuCount": 1,
+      "env": [{"key": "TEST_GPU", "value": "RTX3090"}],
+      "allowedCudaVersions": ["12.1", "11.8"]
+    },
+    {
+      "gpuTypeId": "NVIDIA L4",
+      "gpuCount": 1,
+      "env": [{"key": "TEST_GPU", "value": "L4"}],
+      "allowedCudaVersions": ["12.1", "11.8"]
+    },
+    {
+      "gpuTypeId": "NVIDIA RTX 4090",
+      "gpuCount": 1,
+      "env": [{"key": "TEST_GPU", "value": "RTX4090"}],
+      "allowedCudaVersions": ["12.1", "11.8"]
+    }
+  ]
 }
