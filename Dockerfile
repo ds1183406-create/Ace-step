@@ -23,4 +23,4 @@ COPY . .
 ENV PYTHONPATH=/app
 ENV CHECKPOINT_PATH=/runpod-volume/checkpoints
 
-CMD ["python", "-u", "runpod_handler.py"]
+CMD ["python", "-u", "handler.py"]

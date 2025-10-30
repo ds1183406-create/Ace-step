@@ -3,15 +3,14 @@
     {
       "name": "text2music_generation",
       "input": {
-        "tags": "pop, upbeat, electronic",
-        "lyrics": "[verse] Hello world, this is a test [chorus] Music generation with ACE-Step",
-        "duration": 30
+        "tags": "test music",
+        "duration": 10
       },
-      "timeout": 60000
+      "timeout": 30000
     }
   ],
   "config": {
-    "gpuTypeId": "NVIDIA A100 80GB PCIe",
+    "gpuTypeId": "NVIDIA RTX A5000",
     "gpuCount": 1,
     "env": [
       {
@@ -24,12 +23,9 @@
       }
     ],
     "allowedCudaVersions": [
-      "12.6",
-      "12.5",
-      "12.4",
-      "12.3",
-      "12.2",
-      "12.1"
+      "12.1",
+      "11.8",
+      "11.7"
     ]
   }
 }

@@ -1,34 +1,19 @@
 import runpod
-import os
-import base64
-import torch
-import numpy as np
-from io import BytesIO
-import soundfile as sf
 
-def handler(job):
-    try:
-        # Import ACE-Step here to avoid startup issues
-        import acestep
-        
-        job_input = job['input']
-        
-        # Extract parameters
-        tags = job_input.get('tags', '')
-        lyrics = job_input.get('lyrics', '')
-        duration = job_input.get('duration', 60)
-        
-        # Generate dummy response for now
-        return {
-            "status": "success",
-            "message": f"Generated music for: {tags}",
-            "duration": duration
-        }
-        
-    except Exception as e:
-        return {
-            "status": "error", 
-            "message": str(e)
-        }
+def handler(event):
+    print("Received event:", event)
+    input_data = event.get("input", {})
+    tags = input_data.get("tags", "test music")
+    lyrics = input_data.get("lyrics", "")
+    duration = input_data.get("duration", 30)
+    
+    # Return dummy output for testing
+    return {
+        "status": "success",
+        "tags": tags,
+        "lyrics": lyrics,
+        "duration": duration,
+        "message": "ACE-Step handler executed successfully!"
+    }
 
 runpod.serverless.start({"handler": handler})
