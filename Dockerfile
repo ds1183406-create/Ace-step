@@ -2,6 +2,10 @@ FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-devel
 
 WORKDIR /app
 
+# Set timezone non-interactively
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
