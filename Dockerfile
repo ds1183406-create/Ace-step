@@ -1,4 +1,4 @@
-FROM runpod/pytorch:3.10-2.1.0
+FROM runpod/pytorch:2.1.0
 
 WORKDIR /app
 
