@@ -1,4 +1,4 @@
-FROM runpod/pytorch:2.1.0
+FROM python:3.10-slim
 
 WORKDIR /app
 
@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
-RUN pip install runpod
+RUN pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir runpod
 
 # Copy application files
 COPY . .
